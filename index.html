@@ -867,7 +867,18 @@
         // Carousel scroll function
         function scrollCarousel(direction) {
             const carousel = document.querySelector('.logos-carousel');
-            const scrollAmount = 250;
+            const isMobile = window.innerWidth <= 768;
+
+            let scrollAmount;
+            if (isMobile) {
+                // On mobile, scroll to show next full card (85vw + 15px gap)
+                const mobileCardWidth = window.innerWidth * 0.85 + 15;
+                scrollAmount = mobileCardWidth;
+            } else {
+                // On desktop, fixed scroll amount
+                scrollAmount = 250;
+            }
+
             carousel.scrollBy({
                 left: direction * scrollAmount,
                 behavior: 'smooth'
