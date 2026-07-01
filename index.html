@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorenzo Limonta - UGC Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 50%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 800px 600px at 10% 20%, rgba(0, 102, 204, 0.08), transparent),
+                radial-gradient(ellipse 800px 600px at 90% 80%, rgba(0, 102, 204, 0.06), transparent),
+                radial-gradient(ellipse 600px 500px at 50% 50%, rgba(0, 102, 204, 0.03), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0f0f0;
+            padding: 18px 50px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0066cc;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 45px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 50px 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 50%, #e8f4ff 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.12), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatSlow 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.08), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatSlow 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(40px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .hero p {
+            font-size: 1.35em;
+            color: #0066cc;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .hero-contact {
+            font-size: 1em;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        .hero-contact p {
+            font-size: 1em;
+            color: #666;
+            margin: 8px 0;
+            font-weight: 400;
+        }
+
+        /* Brands Section */
+        .brands-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fcff 50%, #ffffff 100%);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            position: relative;
+        }
+
+        .brands-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 80% 0%, rgba(0, 102, 204, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #000;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carousel-container {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .logos-carousel {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 40px 30px;
+            scroll-snap-type: x mandatory;
+            background: #f8fbff;
+            border: 1px solid #e8e8e8;
+        }
+
+        .logos-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .logos-carousel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .logo-item {
+            flex: 0 0 280px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            scroll-snap-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.1), transparent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-item:hover {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e8f4ff 100%);
+            border-color: #0066cc;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.18);
+        }
+
+        .logo-item:hover::before {
+            opacity: 1;
+        }
+
+        .logo-item img {
+            max-width: 90%;
+            max-height: 110px;
+            object-fit: contain;
+            margin-bottom: 14px;
+        }
+
+        .brand-name {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #0066cc;
+            background: #ffffff;
+            color: #0066cc;
+            font-size: 1.3em;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        .carousel-btn:hover {
+            background: #0066cc;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        /* Ticker Section */
+        .ticker-section {
+            background: linear-gradient(135deg, #e8f4ff 0%, #ffffff 50%, #f0f8ff 100%);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            padding: 35px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 500px 300px at 20% 50%, rgba(0, 102, 204, 0.04), transparent),
+                radial-gradient(ellipse 600px 300px at 80% 50%, rgba(0, 102, 204, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 50px;
+            animation: tickerScroll 30s linear infinite;
+            white-space: nowrap;
+            padding: 0 50px;
+        }
+
+        .ticker-item {
+            flex-shrink: 0;
+            font-size: 1.05em;
+            color: #0066cc;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: inline-block;
+        }
+
+        @keyframes tickerScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 120px 50px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 50%, #e8f4ff 100%);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 700px 500px at 50% 0%, rgba(0, 102, 204, 0.08), transparent);
+            pointer-events: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border: 1px solid rgba(0, 102, 204, 0.15);
+            border-radius: 16px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .stat-card:hover {
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+            border-color: #0066cc;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 102, 204, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 800;
+            color: #0066cc;
+            margin-bottom: 15px;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 120px 50px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fcff 50%, #ffffff 100%);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            position: relative;
+        }
+
+        .portfolio-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 700px 400px at 20% 0%, rgba(0, 102, 204, 0.05), transparent),
+                radial-gradient(ellipse 600px 400px at 80% 100%, rgba(0, 102, 204, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .portfolio-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            text-align: center;
+            margin: 0 0 80px;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fcff 100%);
+            border: 1px solid rgba(0, 102, 204, 0.12);
+            padding: 32px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+            border-color: #0066cc;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 102, 204, 0.15);
+        }
+
+        .portfolio-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-name {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .card-views {
+            font-size: 1em;
+            color: #0066cc;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+            padding: 60px 50px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 800px 300px at 50% 0%, rgba(0, 102, 204, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 100px 30px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .brands-section {
+                padding: 60px 30px;
+            }
+
+            .section-title {
+                font-size: 2.3em;
+                margin-bottom: 50px;
+            }
+
+            .carousel-btn {
+                display: none;
+            }
+
+            .stats-section {
+                padding: 60px 30px;
+            }
+
+            .portfolio-section {
+                padding: 60px 30px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 16px;
+            }
+
+            footer {
+                padding: 40px 30px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">UGC Portfolio</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Lorenzo Limonta</h1>
+            <p>Digital Advertising & Social Media Marketing Professional</p>
+            <div class="hero-contact">
+                <p>ljlimonta@gmail.com | 678.995.4600</p>
+                <p>Professional Works Portfolio Specialist in High-Performing Advertising Content</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section" id="brands">
+        <h2 class="section-title">Trusted by Major Brands</h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-prev" onclick="scrollCarousel(-1)">❮</button>
+            <div class="carousel-container">
+                <div class="logos-carousel">
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Microsoft.webp" alt="Microsoft">
+                        <span class="brand-name">Microsoft</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/WarnerBros.png" alt="Warner Bros">
+                        <span class="brand-name">Warner Bros</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Paramount.jpg" alt="Paramount Plus">
+                        <span class="brand-name">Paramount+</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Marvel.png" alt="Marvel">
+                        <span class="brand-name">Marvel</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Crypto.webp" alt="Crypto.com">
+                        <span class="brand-name">Crypto.com</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Snapchat.jpeg" alt="Snapchat">
+                        <span class="brand-name">Snapchat</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/NordVPN.jpg" alt="NordVPN">
+                        <span class="brand-name">NordVPN</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Shein.jpg.webp" alt="Shein">
+                        <span class="brand-name">Shein</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/shakeshack.png" alt="Shake Shack">
+                        <span class="brand-name">Shake Shack</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/PrizePicks.jpg" alt="PrizePicks">
+                        <span class="brand-name">PrizePicks</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/TicketMaster.webp" alt="TicketMaster">
+                        <span class="brand-name">TicketMaster</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Subway.jpg" alt="Subway">
+                        <span class="brand-name">Subway</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/Doritos.png" alt="Doritos">
+                        <span class="brand-name">Doritos</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/cheetos.jpg" alt="Cheetos">
+                        <span class="brand-name">Cheetos</span>
+                    </div>
+                    <div class="logo-item">
+                        <img src="file:///Users/lorenzolimonta/Desktop/logos/canva.png" alt="Canva">
+                        <span class="brand-name">Canva</span>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn carousel-next" onclick="scrollCarousel(1)">❯</button>
+        </div>
+    </section>
+
+    <!-- Ticker Section -->
+    <section class="ticker-section">
+        <div class="ticker-container">
+            <div class="ticker-content">
+                <span class="ticker-item">TikTok Promote • 26M Views</span>
+                <span class="ticker-item">Block Blast • 16M Views</span>
+                <span class="ticker-item">NordVPN • 14.5M Views</span>
+                <span class="ticker-item">Crypto.com • 13.15M Views</span>
+                <span class="ticker-item">Archero • 13M Views</span>
+                <span class="ticker-item">Brigit • 7.21M Views</span>
+                <span class="ticker-item">Marvel Rivals • 5.33M Views</span>
+                <span class="ticker-item">Gowish • 2.7M Views</span>
+                <span class="ticker-item">Warner Bros - Game of Thrones • 2.7M Views</span>
+                <span class="ticker-item">Kingshot • 2.7M Views</span>
+                <span class="ticker-item">Airplane Chefs • 1.64M Views</span>
+                <span class="ticker-item">Last War Survival • 903K Views</span>
+                <span class="ticker-item">Cat Mine: Galaxy Adventure • 840.95K Views</span>
+                <span class="ticker-item">CookieRun • 734.4K Views</span>
+                <span class="ticker-item">Priceline Hotels • 737.2K Views</span>
+                <span class="ticker-item">Shein • 624K Views</span>
+                <span class="ticker-item">Grammarly • 624.18K Views</span>
+                <span class="ticker-item">Shopkick • 638.27K Views</span>
+                <span class="ticker-item">Shake Shack - Valentine's Day Campaign • 457.24K Views</span>
+                <span class="ticker-item">Doritos - Super Bowl Campaign • 391.52K Views</span>
+                <span class="ticker-item">Beagle • 365.95K Views</span>
+                <span class="ticker-item">Fubo TV • 354.41K Views</span>
+                <span class="ticker-item">18 Birdies Golf • 252.61K Views</span>
+                <span class="ticker-item">Wings of Heroes Plane Game • 241.23K Views</span>
+                <span class="ticker-item">PrizePicks • 274.21K Views</span>
+                <span class="ticker-item">Color Clash • 267.6K Views</span>
+                <span class="ticker-item">ExpressVPN • 266.21K Views</span>
+                <span class="ticker-item">Sleeper DFS • 241.32K Views</span>
+                <span class="ticker-item">Snapchat - AI Filter Campaign • 33K Views</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="ticker-item">TikTok Promote • 26M Views</span>
+                <span class="ticker-item">Block Blast • 16M Views</span>
+                <span class="ticker-item">NordVPN • 14.5M Views</span>
+                <span class="ticker-item">Crypto.com • 13.15M Views</span>
+                <span class="ticker-item">Archero • 13M Views</span>
+                <span class="ticker-item">Brigit • 7.21M Views</span>
+                <span class="ticker-item">Marvel Rivals • 5.33M Views</span>
+                <span class="ticker-item">Gowish • 2.7M Views</span>
+                <span class="ticker-item">Warner Bros - Game of Thrones • 2.7M Views</span>
+                <span class="ticker-item">Kingshot • 2.7M Views</span>
+                <span class="ticker-item">Airplane Chefs • 1.64M Views</span>
+                <span class="ticker-item">Last War Survival • 903K Views</span>
+                <span class="ticker-item">Cat Mine: Galaxy Adventure • 840.95K Views</span>
+                <span class="ticker-item">CookieRun • 734.4K Views</span>
+                <span class="ticker-item">Priceline Hotels • 737.2K Views</span>
+                <span class="ticker-item">Shein • 624K Views</span>
+                <span class="ticker-item">Grammarly • 624.18K Views</span>
+                <span class="ticker-item">Shopkick • 638.27K Views</span>
+                <span class="ticker-item">Shake Shack - Valentine's Day Campaign • 457.24K Views</span>
+                <span class="ticker-item">Doritos - Super Bowl Campaign • 391.52K Views</span>
+                <span class="ticker-item">Beagle • 365.95K Views</span>
+                <span class="ticker-item">Fubo TV • 354.41K Views</span>
+                <span class="ticker-item">18 Birdies Golf • 252.61K Views</span>
+                <span class="ticker-item">Wings of Heroes Plane Game • 241.23K Views</span>
+                <span class="ticker-item">PrizePicks • 274.21K Views</span>
+                <span class="ticker-item">Color Clash • 267.6K Views</span>
+                <span class="ticker-item">ExpressVPN • 266.21K Views</span>
+                <span class="ticker-item">Sleeper DFS • 241.32K Views</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 class="section-title" style="margin-bottom: 60px;">Verified Track Record</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Brand Partnerships</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">125M+</div>
+                <div class="stat-label">Impressions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Industry Markets Served</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$250K+</div>
+                <div class="stat-label">Estimated Campaign Value</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <h2 class="portfolio-title">High Performing Campaigns</h2>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card"><div class="card-name">TikTok Promote</div><div class="card-views">26M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Block Blast</div><div class="card-views">16M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">NordVPN</div><div class="card-views">14.5M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Archero</div><div class="card-views">13M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Crypto.com</div><div class="card-views">13.15M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Brigit</div><div class="card-views">7.21M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Marvel Rivals</div><div class="card-views">5.33M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Gowish</div><div class="card-views">2.7M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Warner Bros - Game of Thrones</div><div class="card-views">2.7M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Kingshot</div><div class="card-views">2.7M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Airplane Chefs</div><div class="card-views">1.64M Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Last War Survival</div><div class="card-views">903K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Cat Mine: Galaxy Adventure</div><div class="card-views">840.95K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">CookieRun</div><div class="card-views">734.4K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Priceline Hotels</div><div class="card-views">737.2K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Shein</div><div class="card-views">624K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Grammarly</div><div class="card-views">624.18K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Shopkick</div><div class="card-views">638.27K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Shake Shack - Valentine's Day Campaign</div><div class="card-views">457.24K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Doritos - Super Bowl Campaign</div><div class="card-views">391.52K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Beagle</div><div class="card-views">365.95K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Fubo TV</div><div class="card-views">354.41K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">18 Birdies Golf</div><div class="card-views">252.61K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Wings of Heroes Plane Game</div><div class="card-views">241.23K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">PrizePicks</div><div class="card-views">274.21K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Color Clash</div><div class="card-views">267.6K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">ExpressVPN</div><div class="card-views">266.21K Views</div></div>
+            <div class="portfolio-card"><div class="card-name">Sleeper DFS</div><div class="card-views">241.32K Views</div></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>© 2026 Lorenzo Limonta | Digital Advertising & Social Media Marketing Professional</p>
+        <p>ljlimonta@gmail.com | 678.995.4600</p>
+        <p>Professional Works Portfolio Specialist in High-Performing Advertising Content</p>
+    </footer>
+
+    <script>
+        // Carousel scroll function
+        function scrollCarousel(direction) {
+            const carousel = document.querySelector('.logos-carousel');
+            const scrollAmount = 250;
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Auto-scroll carousel
+        let autoScrollInterval;
+        function startAutoScroll() {
+            const carousel = document.querySelector('.logos-carousel');
+            if (!carousel) return;
+
+            autoScrollInterval = setInterval(() => {
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    scrollCarousel(1);
+                }
+            }, 2500);
+        }
+
+        const carousel = document.querySelector('.logos-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            carousel.addEventListener('mouseleave', startAutoScroll);
+            startAutoScroll();
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

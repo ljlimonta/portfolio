@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Brands - Lorenzo Limonta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 50%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 800px 600px at 10% 20%, rgba(0, 102, 204, 0.08), transparent),
+                radial-gradient(ellipse 800px 600px at 90% 80%, rgba(0, 102, 204, 0.06), transparent),
+                radial-gradient(ellipse 600px 500px at 50% 50%, rgba(0, 102, 204, 0.03), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0f0f0;
+            padding: 18px 50px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0066cc;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 45px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 50px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        /* Brands Grid */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .brand-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+            border: 1px solid rgba(0, 102, 204, 0.12);
+            padding: 30px 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        .brand-card:hover {
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+            border-color: #0066cc;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 102, 204, 0.12);
+        }
+
+        .brand-name {
+            font-size: 1.05em;
+            font-weight: 700;
+            color: #000;
+            line-height: 1.4;
+            word-break: break-word;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-size: 1.8em;
+            color: #0066cc;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+            padding: 60px 50px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 800px 300px at 50% 0%, rgba(0, 102, 204, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        footer p {
+            margin: 8px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .container {
+                padding: 100px 30px 40px;
+            }
+
+            .page-title {
+                font-size: 2.3em;
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .category-title {
+                font-size: 1.3em;
+                margin-bottom: 25px;
+            }
+
+            footer {
+                padding: 40px 30px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">UGC Portfolio</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brands.html" class="active">Brands</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">All Brands</h1>
+
+        <!-- Gaming & Entertainment -->
+        <div class="category-section">
+            <h2 class="category-title">🎮 Gaming & Entertainment</h2>
+            <div class="brands-grid">
+                <div class="brand-card"><div class="brand-name">Block Blast</div></div>
+                <div class="brand-card"><div class="brand-name">Marvel Rivals</div></div>
+                <div class="brand-card"><div class="brand-name">Warner Bros - Game of Thrones</div></div>
+                <div class="brand-card"><div class="brand-name">Last War Survival</div></div>
+                <div class="brand-card"><div class="brand-name">Cat Mine: Galaxy Adventure</div></div>
+                <div class="brand-card"><div class="brand-name">CookieRun</div></div>
+                <div class="brand-card"><div class="brand-name">Wings of Heroes Plane Game</div></div>
+                <div class="brand-card"><div class="brand-name">Borderlands 4</div></div>
+                <div class="brand-card"><div class="brand-name">8 Ball Pool</div></div>
+                <div class="brand-card"><div class="brand-name">Archero</div></div>
+                <div class="brand-card"><div class="brand-name">Solitaire Zen</div></div>
+                <div class="brand-card"><div class="brand-name">OnceHuman</div></div>
+                <div class="brand-card"><div class="brand-name">Tokyo Ghoul</div></div>
+                <div class="brand-card"><div class="brand-name">Age of Empires</div></div>
+                <div class="brand-card"><div class="brand-name">Rise of Kingdoms</div></div>
+            </div>
+        </div>
+
+        <!-- Tech & Security -->
+        <div class="category-section">
+            <h2 class="category-title">🔐 Tech & Security</h2>
+            <div class="brands-grid">
+                <div class="brand-card"><div class="brand-name">NordVPN</div></div>
+                <div class="brand-card"><div class="brand-name">ExpressVPN</div></div>
+                <div class="brand-card"><div class="brand-name">Grammarly</div></div>
+                <div class="brand-card"><div class="brand-name">Microsoft/Xbox</div></div>
+                <div class="brand-card"><div class="brand-name">Opera Browser</div></div>
+                <div class="brand-card"><div class="brand-name">SafeShell VPN</div></div>
+                <div class="brand-card"><div class="brand-name">Roamless eSIM</div></div>
+                <div class="brand-card"><div class="brand-name">Canva</div></div>
+                <div class="brand-card"><div class="brand-name">Tailor Brands</div></div>
+            </div>
+        </div>
+
+        <!-- Finance & Commerce -->
+        <div class="category-section">
+            <h2 class="category-title">💰 Finance & Commerce</h2>
+            <div class="brands-grid">
+                <div class="brand-card"><div class="brand-name">Crypto.com</div></div>
+                <div class="brand-card"><div class="brand-name">Brigit</div></div>
+                <div class="brand-card"><div class="brand-name">PrizePicks</div></div>
+                <div class="brand-card"><div class="brand-name">Sleeper DFS</div></div>
+                <div class="brand-card"><div class="brand-name">Shopkick</div></div>
+                <div class="brand-card"><div class="brand-name">Rakuten</div></div>
+                <div class="brand-card"><div class="brand-name">Chime</div></div>
+                <div class="brand-card"><div class="brand-name">Upside</div></div>
+                <div class="brand-card"><div class="brand-name">Wise</div></div>
+                <div class="brand-card"><div class="brand-name">AliExpress</div></div>
+                <div class="brand-card"><div class="brand-name">CouPert</div></div>
+            </div>
+        </div>
+
+        <!-- Food & Beverage -->
+        <div class="category-section">
+            <h2 class="category-title">🍔 Food & Beverage</h2>
+            <div class="brands-grid">
+                <div class="brand-card"><div class="brand-name">Shake Shack</div></div>
+                <div class="brand-card"><div class="brand-name">Shein</div></div>
+                <div class="brand-card"><div class="brand-name">Doritos</div></div>
+                <div class="brand-card"><div class="brand-name">Subway</div></div>
+                <div class="brand-card"><div class="brand-name">Wingstop</div></div>
+                <div class="brand-card"><div class="brand-name">Casey's Pizza</div></div>
+                <div class="brand-card"><div class="brand-name">Carl's Jr</div></div>
+                <div class="brand-card"><div class="brand-name">Cheetos</div></div>
+                <div class="brand-card"><div class="brand-name">Gatorade</div></div>
+                <div class="brand-card"><div class="brand-name">Smoothie King</div></div>
+            </div>
+        </div>
+
+        <!-- Media & Entertainment -->
+        <div class="category-section">
+            <h2 class="category-title">🎬 Media & Entertainment</h2>
+            <div class="brands-grid">
+                <div class="brand-card"><div class="brand-name">Priceline Hotels</div></div>
+                <div class="brand-card"><div class="brand-name">Fubo TV</div></div>
+                <div class="brand-card"><div class="brand-name">18 Birdies Golf</div></div>
+                <div class="brand-card"><div class="brand-name">Snapchat</div></div>
+                <div class="brand-card"><div class="brand-name">Paramount+</div></div>
+                <div class="brand-card"><div class="brand-name">NBC Golf Now</div></div>
+                <div class="brand-card"><div class="brand-name">TicketMaster</div></div>
+                <div class="brand-card"><div class="brand-name">BeReal</div></div>
+            </div>
+        </div>
+
+        <!-- Apps & Platforms -->
+        <div class="category-section">
+            <h2 class="category-title">📱 Apps & Platforms</h2>
+            <div class="brands-grid">
+                <div class="brand-card"><div class="brand-name">Gowish</div></div>
+                <div class="brand-card"><div class="brand-name">Beagle</div></div>
+                <div class="brand-card"><div class="brand-name">Color Clash</div></div>
+                <div class="brand-card"><div class="brand-name">Factor Meals</div></div>
+                <div class="brand-card"><div class="brand-name">GoPuff</div></div>
+                <div class="brand-card"><div class="brand-name">NewsBreak</div></div>
+                <div class="brand-card"><div class="brand-name">BitLife</div></div>
+                <div class="brand-card"><div class="brand-name">Duet Dating</div></div>
+                <div class="brand-card"><div class="brand-name">TripleTen</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Lorenzo Limonta | Digital Advertising & Social Media Marketing Professional</p>
+        <p>ljlimonta@gmail.com | 678.995.4600</p>
+    </footer>
+</body>
+</html>

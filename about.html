@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Lorenzo Limonta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 50%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 800px 600px at 10% 20%, rgba(0, 102, 204, 0.08), transparent),
+                radial-gradient(ellipse 800px 600px at 90% 80%, rgba(0, 102, 204, 0.06), transparent),
+                radial-gradient(ellipse 600px 500px at 50% 50%, rgba(0, 102, 204, 0.03), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0f0f0;
+            padding: 18px 50px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0066cc;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 45px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 50px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+            border: 1px solid rgba(0, 102, 204, 0.12);
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-section p {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 15px;
+        }
+
+        .about-section ul {
+            margin-left: 30px;
+            color: #555;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-section li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .accomplishment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .accomplishment-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+            border: 1px solid rgba(0, 102, 204, 0.12);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accomplishment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .accomplishment-card:hover {
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+            border-color: #0066cc;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.12);
+        }
+
+        .accomplishment-number {
+            font-size: 2.8em;
+            font-weight: 800;
+            color: #0066cc;
+            margin-bottom: 10px;
+            line-height: 1;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .accomplishment-label {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .headshot-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1.2;
+            border-radius: 16px;
+            border: 2px solid rgba(0, 102, 204, 0.2);
+            object-fit: cover;
+            box-shadow: 0 20px 50px rgba(0, 102, 204, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .headshot-image:hover {
+            border-color: rgba(0, 102, 204, 0.4);
+            box-shadow: 0 25px 60px rgba(0, 102, 204, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .intro-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-text h2 {
+            font-size: 2em;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-text p {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .intro-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+            padding: 60px 50px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 800px 300px at 50% 0%, rgba(0, 102, 204, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        footer p {
+            margin: 8px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .container {
+                padding: 100px 30px 40px;
+            }
+
+            .page-title {
+                font-size: 2.3em;
+            }
+
+            .about-section {
+                padding: 30px;
+            }
+
+            .accomplishment-cards {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 40px 30px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">UGC Portfolio</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">About Me</h1>
+
+        <!-- Intro Section with Headshot and Background -->
+        <div class="intro-section">
+            <img src="headshot.jpg" alt="Lorenzo Limonta" class="headshot-image">
+            <div class="intro-text">
+                <h2>Professional Background</h2>
+                <p>I'm a digital advertising and social media marketing professional with extensive experience creating high-performing UGC (User Generated Content) campaigns for major global brands. With a proven track record of generating 125M+ impressions across 500+ brand partnerships, I specialize in crafting authentic, engaging content that resonates with audiences and drives measurable results.</p>
+                <p>My expertise spans multiple platforms and industries, allowing me to adapt creative strategies to different brand voices, target demographics, and campaign objectives. Whether it's a game launch, financial service, entertainment platform, or consumer brand, I bring strategic thinking and creative execution to every project.</p>
+            </div>
+        </div>
+
+        <!-- What I Do -->
+        <div class="about-section">
+            <h2 class="section-title">What I Do</h2>
+            <ul>
+                <li><strong>Content Creation:</strong> Produce authentic, platform-optimized UGC ads that feel native and engaging</li>
+                <li><strong>Campaign Strategy:</strong> Develop data-informed creative strategies that align with brand objectives and audience insights</li>
+                <li><strong>Performance Marketing:</strong> Focus on metrics that matter—views, engagement, conversions, and ROI</li>
+                <li><strong>Multi-Channel Expertise:</strong> Create content optimized for TikTok, Instagram, YouTube Shorts, and emerging platforms</li>
+            </ul>
+        </div>
+
+        <!-- Key Accomplishments -->
+        <div class="about-section">
+            <h2 class="section-title">Key Accomplishments</h2>
+            <div class="accomplishment-cards">
+                <div class="accomplishment-card">
+                    <div class="accomplishment-number">125M+</div>
+                    <div class="accomplishment-label">Total Impressions</div>
+                </div>
+                <div class="accomplishment-card">
+                    <div class="accomplishment-number">500+</div>
+                    <div class="accomplishment-label">Brand Partnerships</div>
+                </div>
+                <div class="accomplishment-card">
+                    <div class="accomplishment-number">26M</div>
+                    <div class="accomplishment-label">Peak Campaign Views</div>
+                </div>
+                <div class="accomplishment-card">
+                    <div class="accomplishment-number">10+</div>
+                    <div class="accomplishment-label">Industry Markets</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Lorenzo Limonta | Digital Advertising & Social Media Marketing Professional</p>
+        <p>ljlimonta@gmail.com | 678.995.4600</p>
+        <p>Professional Works Portfolio Specialist in High-Performing Advertising Content</p>
+    </footer>
+</body>
+</html>

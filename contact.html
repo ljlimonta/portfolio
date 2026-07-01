@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Lorenzo Limonta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 50%, #ffffff 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 800px 600px at 10% 20%, rgba(0, 102, 204, 0.08), transparent),
+                radial-gradient(ellipse 800px 600px at 90% 80%, rgba(0, 102, 204, 0.06), transparent),
+                radial-gradient(ellipse 600px 500px at 50% 50%, rgba(0, 102, 204, 0.03), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0f0f0;
+            padding: 18px 50px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0066cc;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 45px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 120px 50px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+            border: 1px solid rgba(0, 102, 204, 0.12);
+            padding: 50px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1em;
+            color: #0066cc;
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            background: rgba(0, 102, 204, 0.04);
+            border: 2px solid rgba(0, 102, 204, 0.15);
+            border-radius: 8px;
+            color: #1a1a1a;
+            font-family: inherit;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #ccc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(0, 102, 204, 0.08);
+            border-color: rgba(0, 102, 204, 0.4);
+            box-shadow: 0 0 15px rgba(0, 102, 204, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 30px;
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1.05em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 102, 204, 0.25);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            text-align: center;
+            color: #0066cc;
+            font-size: 1.1em;
+            margin-top: 20px;
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+            padding: 60px 50px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 800px 300px at 50% 0%, rgba(0, 102, 204, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        footer p {
+            margin: 8px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .container {
+                padding: 100px 30px 40px;
+            }
+
+            .page-title {
+                font-size: 2.3em;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+
+            footer {
+                padding: 40px 30px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">UGC Portfolio</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">Get In Touch</h1>
+
+        <form class="contact-form" action="https://formspree.io/f/xnjkgnpv" method="POST">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+            <div class="success-message">Message sent! I'll get back to you soon.</div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Lorenzo Limonta | Digital Advertising & Social Media Marketing Professional</p>
+        <p>ljlimonta@gmail.com | 678.995.4600</p>
+        <p>Professional Works Portfolio Specialist in High-Performing Advertising Content</p>
+    </footer>
+
+    <script>
+        const form = document.querySelector('.contact-form');
+        const successMessage = document.querySelector('.success-message');
+
+        form.addEventListener('submit', function(e) {
+            // Formspree will handle the submission
+            // This allows us to show a success message
+            setTimeout(() => {
+                successMessage.style.display = 'block';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
